@@ -30,21 +30,22 @@ export class UI {
       return false;
     }
   }
-  // add task function
+  // add task to DOM function
   static addTask(task) {
     const todoList = document.querySelector('.taskList');
     todoList.innerHTML = '';
     storedTask.push(task);
     storedTask.forEach((item) => UI.displayTask(item));
+    Store.addToLocalStorage(storedTask);
     console.log(storedTask);
     UI.displayAlert('success', 'You have added a new task!');
-    UI.updateTaskStatus('YOU HAVE OPEN TASKS','danger');
+    UI.updateTaskStatus('YOU HAVE OPEN TASKS', 'danger');
   }
 
   // display task function
   static displayTask(task) {
     const todoList = document.querySelector('.taskList');
-
+    // add form values to table body element
     todoList.innerHTML += `
     <tr>
     <td> <input type="checkbox" name="check" class="checkbox"></td>
@@ -78,16 +79,29 @@ export class UI {
     storedTask.splice(index, 1);
     storedTask.forEach((item) => UI.displayTask(item));
     UI.displayAlert('danger', 'You Have Removed A task!');
-    UI.updateTaskStatus('NO OPEN TASKS', 'success');
+    // check if there are no tasks left and displays the appropriate task status
+    if (todoList.innerHTML == '') {
+      UI.updateTaskStatus('NO OPEN TASKS', 'success');
+    }
   }
+
+  // remove checked tasks
+  static removeCheckedTasks() {}
+
   // function to update task status
   static updateTaskStatus(message, classList) {
     if (storedTask.length == 0) {
       taskStatus.innerHTML = `${message} <i class="bi bi-list-check"></i>`;
-      
     } else {
       taskStatus.innerHTML = `${message} <i class="bi bi-list-task"></i>`;
     }
-    taskStatus.classList = (`taskStatus text-${classList}`)
+    taskStatus.classList = `taskStatus text-${classList}`;
   }
+}
+
+class Store {
+  static addToLocalStorage(task) {
+    localStorage.setItem('task', JSON.stringify(task));
+  }
+  // add new task
 }
