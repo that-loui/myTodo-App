@@ -1,7 +1,5 @@
 // declare all dom variables
 
-// form variables
-
 // display date variables
 export const todayDate = document.querySelector('.todayDate');
 export const greeting = document.querySelector('.greeting');
@@ -64,7 +62,6 @@ export class UI {
     const storedTask = Store.getFromLocalStorage();
     // loop and display  tasks
     storedTask.forEach((item) => UI.displayTask(item));
-    Store.addToLocalStorage(storedTask);
     console.log(storedTask);
     // show messages and update status
     UI.displayAlert('success', 'You have added a new task!');
@@ -129,9 +126,4 @@ export class UI {
   }
 }
 
-class Store {
-  static addToLocalStorage(task) {
-    localStorage.setItem('task', JSON.stringify(task));
-  }
-  // add new task
-}
+

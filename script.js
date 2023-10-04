@@ -3,10 +3,6 @@ const taskForm = document.querySelector('.taskForm');
 const todoList = document.querySelector('.taskList');
 
 document.addEventListener('DOMContentLoaded', () => {
-  // const storedTask = Store.getFromLocalStorage();
-  // storedTask.forEach((task) => {
-  //   UI.addTask(task);
-  // });
   UI.addTask()
 });
 
