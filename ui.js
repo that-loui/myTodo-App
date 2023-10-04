@@ -16,8 +16,34 @@ export class TaskObject {
     this.taskDetail = taskDetail;
   }
 }
+// class to work with local storage
+export class Store {
+  // function to add tasks to local storage
+  static addToLocalStorage(task) {
+    // instantiate new variable to get tasks from local storage
+    let tasks = Store.getFromLocalStorage();
+    // add new task to already existing tasks
+    tasks.push(task);
+    // modify tasks in local storage
+    localStorage.setItem('task', JSON.stringify(tasks));
+  }
+  // function to get tasks from local storage
+  static getFromLocalStorage() {
+    // instantiate a variable to hold tasks
+    let tasks;
+    // check if local storage is empty
+    if (localStorage.getItem('task') === null) {
+      tasks = [];
+    } else {
+      // if local storage isn't empty set variable to localStorage
+      tasks = JSON.parse(localStorage.getItem('task'));
+    }
+    // return variable
+    return tasks;
+  }
+}
 // array of stored tasks for now
-export const storedTask = [];
+// export const storedTask = Store.getFromLocalStorage();
 
 // UI class for UI functions
 export class UI {
@@ -31,13 +57,16 @@ export class UI {
     }
   }
   // add task to DOM function
-  static addTask(task) {
+  static addTask() {
     const todoList = document.querySelector('.taskList');
     todoList.innerHTML = '';
-    storedTask.push(task);
+    // get tasks from local storage
+    const storedTask = Store.getFromLocalStorage();
+    // loop and display  tasks
     storedTask.forEach((item) => UI.displayTask(item));
     Store.addToLocalStorage(storedTask);
     console.log(storedTask);
+    // show messages and update status
     UI.displayAlert('success', 'You have added a new task!');
     UI.updateTaskStatus('YOU HAVE OPEN TASKS', 'danger');
   }
@@ -90,7 +119,8 @@ export class UI {
 
   // function to update task status
   static updateTaskStatus(message, classList) {
-    if (storedTask.length == 0) {
+    // update tasks status straight from local storage
+    if (Store.getFromLocalStorage.length == 0) {
       taskStatus.innerHTML = `${message} <i class="bi bi-list-check"></i>`;
     } else {
       taskStatus.innerHTML = `${message} <i class="bi bi-list-task"></i>`;

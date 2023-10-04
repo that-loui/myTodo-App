@@ -1,6 +1,14 @@
-import { TaskObject, UI } from './ui.js';
+import { TaskObject, UI, Store } from './ui.js';
 const taskForm = document.querySelector('.taskForm');
 const todoList = document.querySelector('.taskList');
+
+document.addEventListener('DOMContentLoaded', () => {
+  // const storedTask = Store.getFromLocalStorage();
+  // storedTask.forEach((task) => {
+  //   UI.addTask(task);
+  // });
+  UI.addTask()
+});
 
 taskForm.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -10,7 +18,8 @@ taskForm.addEventListener('submit', (e) => {
   if (UI.validateInput(taskTitle) && UI.validateInput(taskDetails)) {
     console.log('success');
     let newTask = new TaskObject(taskTitle, taskDetails);
-    UI.addTask(newTask);
+    Store.addToLocalStorage(newTask);
+    UI.addTask();
   } else {
     console.log('invalid');
   }
