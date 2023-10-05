@@ -4,6 +4,8 @@ const todoList = document.querySelector('.taskList');
 
 document.addEventListener('DOMContentLoaded', () => {
   UI.addTask()
+  UI.displayDates()
+  UI.changeGreeting()
 });
 
 taskForm.addEventListener('submit', (e) => {
@@ -16,6 +18,7 @@ taskForm.addEventListener('submit', (e) => {
     let newTask = new TaskObject(taskTitle, taskDetails);
     Store.addToLocalStorage(newTask);
     UI.addTask();
+    UI.displayAlert('success', 'You have added a new task!');
   } else {
     console.log('invalid');
   }

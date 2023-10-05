@@ -19,9 +19,7 @@
   <body>
     <div class="container text-secondary mb-5">
       <header class="container m-auto mainHeader">
-        <h1 class="display-1 greeting">
-          Hello <i class="bi bi-emoji-smile-fill text-warning"></i>,
-        </h1>
+        <h1 class="display-3 greeting"></h1>
         <h3 class="text-center display-6 my-4 border-bottom">
           What do you have planned?
         </h3>
@@ -60,11 +58,9 @@
             />
           </form>
         </section>
-        <section
-          class="openTasks border border-2 rounded p-2 mx-auto col-lg"
-        >
+        <section class="openTasks border border-2 rounded p-2 mx-auto col-lg">
           <h2>TASKS <i class="bi bi-clipboard2-check"></i></h2>
-          <p class="todayDate"></p>
+          <p class="todayDate text-end h5"></p>
           <table class="table table-light table-striped">
             <thead>
               <tr class="">
@@ -74,13 +70,13 @@
                 <th></th>
               </tr>
             </thead>
-            <tbody class="taskList">
-            </tbody>
+            <tbody class="taskList"></tbody>
           </table>
-          
-          <p class="taskStatus">NO OPEN TASKS <i class="bi bi-list-check "></i></p>
+
+          <p class="taskStatus">
+            NO OPEN TASKS <i class="bi bi-list-check"></i>
+          </p>
         </section>
-        
       </main>
     </div>
     <script type="module" src="./script.js"></script>

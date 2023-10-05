@@ -64,8 +64,7 @@ export class UI {
     storedTask.forEach((item) => UI.displayTask(item));
     console.log(storedTask);
     // show messages and update status
-    UI.displayAlert('success', 'You have added a new task!');
-    UI.updateTaskStatus('YOU HAVE OPEN TASKS', 'danger');
+    UI.updateTaskStatus();
   }
 
   // display task function
@@ -107,7 +106,7 @@ export class UI {
     UI.displayAlert('danger', 'You Have Removed A task!');
     // check if there are no tasks left and displays the appropriate task status
     if (todoList.innerHTML == '') {
-      UI.updateTaskStatus('NO OPEN TASKS', 'success');
+      UI.updateTaskStatus();
     }
   }
 
@@ -115,15 +114,49 @@ export class UI {
   static removeCheckedTasks() {}
 
   // function to update task status
-  static updateTaskStatus(message, classList) {
+  static updateTaskStatus() {
     // update tasks status straight from local storage
-    if (Store.getFromLocalStorage.length == 0) {
-      taskStatus.innerHTML = `${message} <i class="bi bi-list-check"></i>`;
+    if (Store.getFromLocalStorage().length == 0) {
+      taskStatus.innerHTML = `${'NO OPEN TASKS'} <i class="bi bi-list-check"></i>`;
+      // update alert to match status
+      taskStatus.classList = `taskStatus text-success`;
     } else {
-      taskStatus.innerHTML = `${message} <i class="bi bi-list-task"></i>`;
+      taskStatus.innerHTML = `${'YOU HAVE OPEN TASKS'} <i class="bi bi-list-task"></i>`;
+      // update classlist to match status
+      taskStatus.classList = `taskStatus text-danger`;
     }
-    taskStatus.classList = `taskStatus text-${classList}`;
+  }
+
+  static displayDates() {
+    let today = new Date();
+    // console.log();
+    todayDate.textContent = today.toLocaleString('default', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+    });
+  }
+
+  static changeGreeting() {
+    let today = new Date();
+    let hours = today.getHours();
+    switch (true) {
+      // check hour o fthe day and display text based on that
+      case hours > 12 && hours < 16:
+        greeting.innerHTML = ` Good Afternoon U+1F33B`;
+        break;
+      case hours > 16 && hours <= 19:
+        greeting.innerHTML = ` Good Evening U+1F307`;
+        break;
+      case hours > 19 && hours < 22:
+        greeting.innerHTML = ` Good Evening &#x1F314`;
+        break;
+      case hours > 0 && hours < 6:
+        greeting.innerHTML = ` Hello ,${'You should be sleeping '} &#x1F634`;
+        break;
+      default:
+        greeting.innerHTML = ` Good Morning &#x2600`;
+        break;
+    }
   }
 }
-
-
