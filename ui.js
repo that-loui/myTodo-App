@@ -100,10 +100,16 @@ export class UI {
   static deleteTask(index) {
     const todoList = document.querySelector('.taskList');
     todoList.innerHTML = '';
-    // remove task from storage array
+    // get tasks from local storage
+    const storedTask = Store.getFromLocalStorage();
+    // remove task from local storage array
     storedTask.splice(index, 1);
-    storedTask.forEach((item) => UI.displayTask(item));
+    // display danger alert
     UI.displayAlert('danger', 'You Have Removed A task!');
+    // add task back to local storage
+    localStorage.setItem('task', JSON.stringify(storedTask));
+    // Update UI with current tasks
+    UI.addTask()
     // check if there are no tasks left and displays the appropriate task status
     if (todoList.innerHTML == '') {
       UI.updateTaskStatus();
