@@ -154,7 +154,7 @@ export class UI {
       case hours > 16 && hours <= 19:
         greeting.innerHTML = ` Good Evening U+1F307`;
         break;
-      case hours > 19 && hours < 22:
+      case hours > 19 && hours < 24:
         greeting.innerHTML = ` Good Evening &#x1F314`;
         break;
       case hours > 0 && hours < 6:
