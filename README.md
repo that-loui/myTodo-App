@@ -59,7 +59,7 @@ Users should be able to:
 
 #### The greet section:
 
-This section is just the header section, that greats the user based on current time, the greeting on the UI changes based on the time zone. This section //(I achieved this using a static method in my UI class, the class creates a new date using the date object, the uses the '_getHours()_' method to get the specific hour of the day, used a switch case to display different greetings based on the time condition set.)//
+This section is just the header section, that greats the user based on current time, the greeting on the UI changes based on the time zone.
 
 ```js
  static changeGreeting() {
@@ -83,7 +83,7 @@ This section is just the header section, that greats the user based on current t
 
 #### The Input section:
 
-This section is basically a form with two input fields and a submit button. It has a simple design with a header that indicates it's the section to add tasks, after the form is submitted it goes through a validation process, if the validation is true the task gets successfully added to the display section (The validate process just checks to ensure that both input fields aren't empty when the form is submitted, if the form is successfully validated a nw object is instantiated using the TaskObject class, the values of the forms are then passed into the constructor as arguments and a new task object is created. The object is then passed into an array and added to local storage of the browser. The _addTask()_ method is then called to get the tasks currently in local storage and display in the UI. a success message is displayed to show the process is done.)
+This section is basically a form with two input fields and a submit button. It has a simple design with a header that indicates it's the section to add tasks, after the form is submitted it goes through a validation process, if the validation is true the task gets successfully added to the display section
 
 ```js
 <!-- simple validation method -->
