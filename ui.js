@@ -109,7 +109,7 @@ export class UI {
     // add task back to local storage
     localStorage.setItem('task', JSON.stringify(storedTask));
     // Update UI with current tasks
-    UI.addTask()
+    UI.addTask();
     // check if there are no tasks left and displays the appropriate task status
     if (todoList.innerHTML == '') {
       UI.updateTaskStatus();
@@ -147,21 +147,21 @@ export class UI {
     let today = new Date();
     let hours = today.getHours();
     switch (true) {
-      // check hour o fthe day and display text based on that
-      case hours > 12 && hours < 16:
-        greeting.innerHTML = ` Good Afternoon U+1F33B`;
+      // check hour of the day and display text based on that
+      case hours >= 12 && hours <= 16:
+        greeting.innerHTML = ` Good Afternoon 🌞`;
         break;
       case hours > 16 && hours <= 19:
-        greeting.innerHTML = ` Good Evening U+1F307`;
+        greeting.innerHTML = ` Good Evening  🌇 `;
         break;
       case hours > 19 && hours < 24:
-        greeting.innerHTML = ` Good Evening &#x1F314`;
+        greeting.innerHTML = ` Good Evening 🌙 `;
         break;
       case hours > 0 && hours < 6:
-        greeting.innerHTML = ` Hello ,${'You should be sleeping '} &#x1F634`;
+        greeting.innerHTML = ` Hello ,You should be sleeping  🌚`;
         break;
       default:
-        greeting.innerHTML = ` Good Morning &#x2600`;
+        greeting.innerHTML = ` Good Morning 🌅 `;
         break;
     }
   }
